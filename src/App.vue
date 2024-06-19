@@ -1,9 +1,11 @@
 <template>
-  <pokemon-page />
+  <main class="pokemon-page-container">
+    <router-view />
+  </main>
 </template>
 
 <script>
-import PokemonPage from './pages/PokemonPage.vue'
+import PokemonPage from './pages/PokemonPage'
 
 export default {
   name: 'App',
@@ -18,8 +20,13 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.pokemon-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
 }
 </style>
