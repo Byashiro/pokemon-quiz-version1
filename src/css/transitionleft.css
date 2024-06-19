@@ -1,0 +1,9 @@
+.image-container, .list-container {
+    transition: all 0.5s ease-in-out;
+}
+.image-container.move-left {
+  transform: translateX(-50%);
+}
+.list-container.move-left {
+  transform: translateX(-50%);
+}
