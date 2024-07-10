@@ -1,8 +1,8 @@
 <template>
-  <article class="page-container">
-    <section class="poke-game-container">
-      <h1 v-if="!pokemon">Espere por favor....</h1>
-      <div class="quiz-container" v-else>
+  <h1 v-if="!pokemon">Espere por favor....</h1>
+  <article class="page-container"  v-else>
+    <section class="poke-game-container">      
+      <div class="quiz-container" >
         <header>
           <h1>¿Quién es este Pokémon?</h1>
         </header>
@@ -11,7 +11,7 @@
             <pokemon-options :pokemons="pokemonArr" @selection="checkAnswer" :isDisabled="isDisabled" class="poke-options"/>
         </article>
         <footer>
-          <button class="btn-again" @click="newGame">Nuevo Juego</button>
+          <button class="btn-again" @click="newGame"><b>Nuevo Juego</b></button>
         </footer>
       </div>
     </section>
@@ -58,6 +58,7 @@
       AgainGame
     },
     data() {
+      
       return {
         pokemonArr: [],
         pokemon: null,
@@ -165,10 +166,6 @@
 .page-container {
   display: flex;
   justify-content: center;
-  /* height: auto;
-  left: 0;
-  top: 0;
-  width: auto; */
 }
 .poke-points-container {
   height: auto;
@@ -196,25 +193,24 @@
 }
 .div-poke-life {
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
   /* border: 1px solid #000000; */
-  color: #000000;
+  color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   height: auto;
   margin: auto 10px;
   padding: 10px 5px;
+  text-shadow: 5px 5px 10px rgb(0, 0, 0);
   width: auto;
-}
-.img-poke-life {
-  /* box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5); */
 }
 .p-poke-lifes{
   margin: auto;
 }
 .poke-game-container {
-  background-color: rgba(255, 255, 255, 0.1);
+  /* background-color: rgba(255, 255, 255, 0.3); */
+  background-color: rgba(0, 0, 0, 0.3);
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
   color: #000000;
   height: auto;
@@ -247,18 +243,14 @@ h1 {
   top: 0;
   margin: 10px;
   padding: 00px;
-  text-shadow: 0 0 20px #FFFFFF;
+  color: rgb(255, 255, 255);
+  text-shadow: 5px 5px 10px rgb(0, 0, 0);
 }
 @media (max-width: 700px) {
   .page-container {
     align-items: center;
     display: flex;
     flex-direction: column;
-    /* margin: 20px; */
-    /* justify-content: center; */
-    /* height: auto; */
-    /* row-gap: 20px; */
-    /* width: auto; */
   }  
   .poke-game-container{
     width: 100%;
@@ -274,18 +266,4 @@ h1 {
     padding: 5px 10px;
   }
 }
-/* @media (max-width: 700px) {
-  .sct-pokemonquiz{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: auto;
-    row-gap: 20px;
-    width: auto;
-  }
-  .sct-pokemonquiz {
-    width: 100%;
-  }
-} */
 </style>

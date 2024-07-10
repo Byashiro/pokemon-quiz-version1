@@ -1,0 +1,15 @@
+export const evoTriggerName = {
+  "level-up"              :       "subir de nivel",
+  "trade"                 :       "intercambiar",
+  "use-item"              :       "utilizar",
+  "shed"                  :       "muda",
+  "spin"                  :       "girar",
+  "tower-of-darkness"     :       "",
+  "tower-of-waters"       :       "",
+  "three-critical-hits"   :       "",
+  "take-damage"           :       "",
+  "other"                 :       "",
+  "agile-style-move"      :       "",
+  "strong-style-move"     :       "",
+  "recoil-damage"         :       "",
+};

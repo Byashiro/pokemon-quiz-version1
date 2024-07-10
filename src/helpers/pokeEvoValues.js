@@ -1,0 +1,47 @@
+
+
+const evoItem = {
+  "sun-stone"                 :           "Piedra Solar",
+  "moon-stone"                :           "Piedra Lunar",
+  "fire-stone"                :           "Piedra Fuego",
+  "thunder-stone"             :           "Piedra Trueno",
+  "water-stone"               :           "Piedra Agua",
+  "leaf-stone"                :           "Piedra Hoja",
+  "shiny-stone"               :           "Piedra Día",
+  "dusk-stone"                :           "Piedra Noche",
+  "dawn-stone"                :           "Piedra Alba",
+  "oval-stone"                :           "Piedra Oval",
+  "dragon-scale"              :           "Escama Dragón",
+  "up-grade"                  :           "Mejora",
+  "protector"                 :           "Protector",
+  "electirizer"               :           "Electrizador",
+  "magmarizer"                :           "Magmatizador",
+  "dubious-disc"              :           "Disco Extraño",
+  "reaper-cloth"              :           "Tela Terrible",
+  "prism-scale"               :           "Escama Bella",
+  "whipped-dream"             :           "Dulce de Nata",
+  "sachet"                    :           "Saquito Fragante",
+  "ice-stone"                 :           "Piedra Hielo",
+  "strawberry-sweet"          :           "Confite Fresa",
+  "love-sweet"                :           "Confite Corazón",
+  "berry-sweet"               :           "Confite Fruto",
+  "clover-sweet"              :           "Confite Trébol",
+  "flower-sweet"              :           "Confite Flor",
+  "star-sweet"                :           "Confite Estrella",
+  "ribbon-sweet"              :           "Confite Lazo",
+  "sweet-apple"               :           "Manzana Dulce",
+  "tart-apple"                :           "Manzana Ácida",
+  "cracked-pot"               :           "Tetera Agrietada",
+  "chipped-pot"               :           "Tetera Rota",
+  "malicious-armor"           :           "sin traducción",
+  "syrupy-apple"              :           "sin traducción",
+  "unremarkable-teacup"       :           "sin traducción",
+  "masterpiece-teacup"        :           "sin traducción",
+  "linking-cord"              :           "sin traducción",
+  "black-augurite"            :           "sin traducción",
+  "peat-block"                :           "sin traducción",
+};
+
+
+
+export { evoItem };

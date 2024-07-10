@@ -91,14 +91,12 @@
 </template>
 
 <script>
-  // import PokemonPage from '@/pages/PokemonPage';
   import PokemonPicture from '@/components/PokemonPicture';
   import { colours } from '@/helpers/pokeTypesColours';
   import { typePokeEs } from '@/helpers/pokeTypesEs';
 
   export default {
     components: {
-      // PokemonPage,
       PokemonPicture,
     },
     data() {
@@ -150,158 +148,144 @@
 </script>
 
 <style scoped>
-  @import url('@/css/styles-components.css');
+@import url('@/css/styles-components.css');
 
-  .modal-pokemon {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .3);
-    z-index: 999;
-    position: fixed;
-    display: flex;
-    backdrop-filter: blur(10px);
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-  }
-  h1 {
-    top: 0;
-    padding: 0;
-    margin: 0;
-    text-shadow: 0 0 0px #000000;
-  }
-  .modal-pokemon-container {
-    width: 80%;
-    height: 80%;
-    padding: 20px;
-    display: block;
-    overflow: auto;
-    justify-content: center;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.7);
-  }
+.modal-pokemon {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .3);
+  z-index: 999;
+  position: fixed;
+  display: flex;
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+h1 {
+  top: 0;
+  padding: 0;
+  margin: 0;
+  text-shadow: 0 0 0px #000000;
+}
+.modal-pokemon-container {
+  width: 80%;
+  height: 80%;
+  padding: 20px;
+  display: block;
+  overflow: auto;
+  justify-content: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.sct-pokemon {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0px;
+  width: 100%;
+}
+.poke-id-name, .poke-data-title, .poke-type-title   {
+  margin: 10px 10px;
+  text-shadow: 0 0 0px #000000;
+}
+.pokemon-img-container {
+  height: 400px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+}
+.poke-type-ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.poke-types-li {
+  color: #000000;
+  text-shadow: 0 0 0px #000000;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  margin: 0 15px;
+  border-radius: 20px;
+  padding: 10px;
+  width:  40%;
+}
+.poke-img {
+  position: relative;
+  margin: 0 auto;
+}
+.pokemon-data-container {
+  align-items: center;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 600px;
+}
+.div-nav-container {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+  margin: 20px 0px;
+  width: 90%;
+}
+.poke-nav-container {
+  display: flex;
+  overflow-x: auto;
+  padding: auto;
+}
+.poke-route-link {
+  color: #000000;
+  padding: 20px;
+  margin: auto;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.is-active {
+  color: #ffffff !important;
+  filter: brightness(100%) !important;
+  text-shadow: 2px 2px 10px #000000 !important;
+}
+.poke-route-link:hover {
+  color: #ffffff !important;
+  filter: brightness(100%) !important;
+  text-shadow: 2px 2px 10px #000000 !important;
+}
+.poke-data-info-container {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
+  height: 90%;
+  justify-content: center;
+  margin-bottom: 20px;
+  overflow-y: auto;
+  width: 90%;
+}
+.modal-pokemon-container::-webkit-scrollbar,
+.poke-data-info-container::-webkit-scrollbar,
+.poke-nav-container::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+.modal-pokemon-container::-webkit-scrollbar-thumb,
+.poke-data-info-container::-webkit-scrollbar-thumb,
+.poke-nav-container::-webkit-scrollbar-thumb {
+  background: #888888;
+  border-radius: 5px;
+}
+@media (max-width: 800px) {
   .sct-pokemon {
     display: flex;
-    justify-content: space-between;
-    padding: 20px 0px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    height: auto;
+  }
+  .sct-pokemon, 
+  .pokemon-img-container, 
+  .pokemon-data-container {
     width: 100%;
   }
-  .poke-id-name, .poke-data-title, .poke-type-title   {
-    margin: 10px 10px;
-    text-shadow: 0 0 0px #000000;
-  }
-  .pokemon-img-container {
-    height: 400px;
-    width: 400px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
-  }
-  .poke-type-ul {
-    display: flex;
-    list-style-type: none;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-  }
-  .poke-types-li {
-    color: #000000;
-    text-shadow: 0 0 0px #000000;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-    margin: 0 15px;
-    border-radius: 20px;
-    padding: 10px;
-    width:  40%;
-  }
-  .poke-img {
-    position: relative;
-    margin: 0 auto;
-  }
-  .pokemon-data-container {
-    align-items: center;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
-    display: flex;
-    flex-direction: column;
-    height: 400px;
-    width: 600px;
-  }
-  .div-nav-container {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
-    margin: 20px 0px;
-    width: 90%;
-  }
-  .poke-nav-container {
-    display: flex;
-    overflow-x: auto;
-    padding: auto;
-  }
-  .poke-route-link {
-    color: #000000;
-    padding: 20px;
-    margin: auto;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-  .is-active {
-    /* border: 1px solid #000000; */
-    /* box-shadow: 0 0 10px 0 #000000; */
-    color: #ffffff !important;
-    filter: brightness(100%) !important;
-    text-shadow: 2px 2px 10px #000000 !important;
-  }
-  .poke-route-link:hover {
-    /* background-color: rgb(0, 0, 0, 0.5) !important; */
-    /* box-shadow: 0 0 10px 0 #000000; */
-    color: #ffffff !important;
-    filter: brightness(100%) !important;
-    text-shadow: 2px 2px 10px #000000 !important;
-  }
-  .poke-data-info-container {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.7);
-    height: 90%;
-    justify-content: center;
-    margin-bottom: 20px;
-    overflow-y: auto;
-    width: 90%;
-  }
-  .modal-pokemon-container::-webkit-scrollbar,
-  .poke-data-info-container::-webkit-scrollbar,
-  .poke-nav-container::-webkit-scrollbar {
-    width: 10px;
-    height: 8px;
-  }
-  .modal-pokemon-container::-webkit-scrollbar-thumb,
-  .poke-data-info-container::-webkit-scrollbar-thumb,
-  .poke-nav-container::-webkit-scrollbar-thumb {
-    background: #888888;
-    border-radius: 5px;
-  }
-  @media (max-width: 800px) {
-    .sct-pokemon {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      row-gap: 20px;
-      height: auto;
-    }
-    .sct-pokemon, 
-    .pokemon-img-container, 
-    .pokemon-data-container {
-      width: 100%;
-    }
-    .poke-nav-container {
-      /* align-items: center; */
-      /* display: flex; */
-      /* justify-content: space-between; */
-      /* flex-direction: column; */
-    }
-    .poke-nav-container a {
-      /* margin: 10px 0; */
-      /* align-items: center; */
-    }
-  }
+}
 </style>

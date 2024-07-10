@@ -50,66 +50,84 @@
         <h4 class="h4-evo">Evoluciones:</h4>
         <div class="div-evo-container">
             <table class="tab-evo">
-                <tr v-if="pokeHaveEvo" class="tr-evo">
-                    <div class="div-container-img" v-for="evolutions in filteredEvolutions" :key="evolutions">
-                        <!-- <td class="td-evo"> -->
-                            <div class="div-evo-img">
-                                <img :src="getPokeImg(evolutions.id)" class="img-evo" 
-                                    :alt="'Imagen de ' + evolutions.name"
+                    <!-- <tr class="tr-evo" v-if="hasPokeEvo && hasFirstEvo == false">
+                        <div class="div-baseEvoContainer-img">
+                            <img :src="getPokeImg(pokeEvo.baseEvo.id)" class="img-evo" 
+                                :alt="'Imagen de ' + pokeEvo.baseEvo.name"
+                            >
+                            <p class="p-evo"><b>{{ pokeEvo.baseEvo.name ? pokeEvo.baseEvo.name.toUpperCase() : '' }}</b></p>
+                        </div>
+                    </tr>
+
+                    <tr class="tr-firstEvo" v-else-if="hasPokeEvo && hasFirstEvo">
+                        <td>
+                            <div class="div-baseEvoContainer-img">
+                                <img :src="getPokeImg(pokeEvo.baseEvo.id)" class="img-evo" 
+                                    :alt="'Imagen de ' + pokeEvo.baseEvo.name"
                                 >
-                            </div>
-                            <p class="p-evo"><b>{{ evolutions.name ? evolutions.name.toUpperCase() : '' }}</b></p>
-                        <!-- </td> -->
-                    </div>
-                </tr>
-                <!-- <tr v-else class="tr-evo">
-                    <div class="div-td-evo">
-                        <td class="td-evo">
-                            <div class="div-evo-img">
-                                <img :src="getPokeImg(pokeEvolutions.id)" class="img-evo" 
-                                    :alt="'Imagen de ' + pokeEvolutions.name"
-                                >
+                                <p class="p-evo"><b>{{ pokeEvo.baseEvo.name ? pokeEvo.baseEvo.name.toUpperCase() : '' }}</b></p>
                             </div>
                         </td>
-                        <p class="p-evo"><b>{{ pokeEvolutions.name ? pokeEvolutions.name.toUpperCase() : '' }}</b></p>
-                    </div >                        
-                </tr> -->
+
+                        <td>
+                            <div>
+                                <p>evoluciona a:</p>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="div-firstEvoContainer-img" v-for="firstEvoInfo in pokeEvo.firstEvo" :key="firstEvoInfo">
+                                <img :src="getPokeImg(firstEvoInfo.id)" class="img-evo" 
+                                    :alt="'Imagen de ' + firstEvoInfo.name"
+                                >
+                                <p class="p-evo"><b>{{ firstEvoInfo.name ? firstEvoInfo.name.toUpperCase() : '' }}</b></p>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr v-else class="tr-evo">
+                        <p class="p-evo">No hay evoluciones.</p>
+                    </tr> -->
             </table>
         </div>
     </section>
 </template>
 
 <script>
-import { getPokeDataSpecies, getPokeData } from '@/helpers/getPokeData'
+import { getPokeDescription, getPokeEvoChain, getPokeData } from '@/helpers/getPokeData'
 
 export default {
     data() {
         return {
             pokeDescription: {},
             pokeDataObj: {},
-            pokeEvolutions: {},
-            pokeHaveEvo: false,
+            pokeEvo: {},
+            hasPokeEvo: false,
+            hasFirstEvo: false,
+            hasSecondEvo:false,
             hiddenAbility: false,
             showDescriptionModal: false
         }
     },
     props: {
-        pokeId: Number
+        pokeId: {
+            type: Number
+        }    
     },
     methods: {
         async displayPokemonInfo() {
             const id = this.pokeId;
-            try {
-                const pokeSpecies = await getPokeDataSpecies( id );
-                this.pokeDescription = pokeSpecies.description;
-                this.pokeEvolutions = pokeSpecies.evolutions;
-                // console.log(this.pokeEvolutions);
 
-                if (Object.keys({ ...this.pokeEvolutions?.firstEvo }).length > 0) {
-                    this.pokeHaveEvo = true;
-                } else {
-                    this.pokeHaveEvo = false;
-                }
+            try {
+                const pokeDescription = await getPokeDescription( id );
+                this.pokeDescription = pokeDescription.description;
+
+                const pokeEvolutions = await getPokeEvoChain( id );
+                this.pokeEvo = pokeEvolutions.evolutions;
+                
+                console.log(this.pokeEvo);
+
+                //this.hasPokeEvo = this.hasEvolutions;
 
             } catch (error) {
                 console.error('Error fetching PokeData Info:', error);
@@ -131,14 +149,27 @@ export default {
         hideDescription() {
             this.showDescriptionModal = false;
         },
-        getPokeImg(evolutionsid, pokeEvolutionsid) {
-            const idToUse = evolutionsid || pokeEvolutionsid;
+        getPokeImg(evoId, pokeEvo) {
+            const idToUse = evoId || pokeEvo;
             return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/${idToUse}.gif`;
         },
     },
     computed: {
-        filteredEvolutions() {
-            return Object.values(this.pokeEvolutions).filter(evolution => Object.keys(evolution).length > 0);
+        hasEvolutions() {
+            return this.pokeEvo !== undefined && (
+                "firstEvo" in this.pokeEvo || "secondEvo" in this.pokeEvo
+            );
+        },
+        evoMessage() {
+            if ( this.hasEvolutions ) {
+                // return "No tiene evoluciones";
+            } else if ( "secondEvo" in this.pokeEvo) {
+                // return "Tiene segunda evolucion";
+                // return this.hasSecondEvo = true;
+            } else {
+                // return "Tiene primera evolucion";
+                // return this.hasPokeEvo = false;
+            }
         }
     },
     mounted() {
@@ -149,7 +180,7 @@ export default {
 </script>
 
 <style scoped>
-.poke-description-container{
+.poke-description-container {
     height: auto;
     justify-content: center;
     margin: 10px;
@@ -257,9 +288,16 @@ export default {
     /* width: 100%; */
     width: 100%;
 }
+.div-tr-evo {
+    border: 1px solid #2600ff;
+    height: 100%;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+}
 .tr-evo {
     align-items: center;
-    /* border: 1px solid #000000; */
+    border: 1px solid #000000;
     display: flex;
     /* flex-direction: column; */
     height: 100%;
@@ -267,9 +305,19 @@ export default {
     padding: 10px;
     width: 100%;
 }
-.div-container-img{
-    align-content: center;
-    /* border: 1px solid #000000; */
+.tr-firstEvo {
+    align-items: center;
+    border: 1px solid #a70784;
+    display: flex;
+    /* flex-direction: column; */
+    height: 100%;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+}
+.div-baseEvoContainer-img {
+    align-items: center;
+    border: 1px solid #ff0000;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -277,17 +325,16 @@ export default {
     margin: 5px;
     width: auto;
 }
-/* .td-evo {
+.div-firstEvoContainer-img {
     align-items: center;
-    border: 1px solid #9605f7;
+    border: 1px solid #09ff00;
     display: flex;
     flex-direction: column;
+    /* flex-wrap: wrap; */
     height: auto;
-    justify-content: center;
-    margin: 10px;
-    padding: 5px;
+    margin: 5px;
     width: auto;
-} */
+}
 .div-evo-img {
     align-items: center;
     /* border: 1px solid #001aff; */
@@ -316,13 +363,12 @@ export default {
     border-radius: 5px;
 }
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 700px) {
     .tr-evo {
         display: flex;
         flex-direction: column;
     }
-    .img-evo {
-
-    }
+    /* .img-evo {
+    } */
 }
 </style>
