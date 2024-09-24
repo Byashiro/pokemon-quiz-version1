@@ -16,11 +16,3 @@ module.exports = defineConfig({
     ]
   }
 });
-
-
-/*
-  <div v-for="(pokId, index) in pokedexId" :key="index">
-    <img src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ this.pokId }}.png`" alt="">
-  </div>
-
-*/

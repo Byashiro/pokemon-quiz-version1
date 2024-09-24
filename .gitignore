@@ -1,15 +1,13 @@
 .DS_Store
 node_modules
-/dist
-
-# Ignorar el directorio src
-src/
+# /dist
+dist
+dist-ssr
+*.local
 
 # local env files
-# .env.local
-# .env.*.local
-.env
-config/
+.env.local
+.env.*.local
 
 # Log files
 npm-debug.log*
