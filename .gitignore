@@ -2,10 +2,14 @@
 node_modules
 /dist
 
+# Ignorar el directorio src
+src/
 
 # local env files
-.env.local
-.env.*.local
+# .env.local
+# .env.*.local
+.env
+config/
 
 # Log files
 npm-debug.log*
