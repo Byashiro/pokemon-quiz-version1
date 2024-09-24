@@ -25,3 +25,17 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Archivos generados por herramientas de linting
+.eslintcache
+.prettiercache
+
+# Archivos temporales
+*.tmp
+*.log
+*.bak
+
+# Archivos de configuración específicos
+.webpack-dev-server.json
+.postcssrc.js
+.babelrc
